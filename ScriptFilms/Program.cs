@@ -11,7 +11,7 @@ namespace ScriptFilms
 {
     class Program
     {
-        private const string sourceDirectory = @"D:\test\";
+        private const string sourceDirectory = @"H:\Videos\Films";
         private static Util util;
 
         static void Main(string[] args)
@@ -157,7 +157,7 @@ namespace ScriptFilms
             try
             {
                 string[] PathFileNames;
-                PathFileNames = Directory.GetFiles(@"H:\Videos\Films", "*(????)*", SearchOption.TopDirectoryOnly);
+                PathFileNames = Directory.GetFiles(sourceDirectory, "*(????)*", SearchOption.TopDirectoryOnly);
                 int nbDossierActuelle = 0;
                 int nbDossierDeFilm = Directory.GetDirectories(sourceDirectory).Length;
                 foreach (string nom in PathFileNames)
