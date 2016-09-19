@@ -152,8 +152,46 @@ namespace ScriptFilms
             Console.WriteLine();
             Console.WriteLine("En cours...");
 
+            Boolean isActive = true;
 
-            Util.afficherPourcentage();
+            try
+            {
+                string[] PathFileNames;
+                PathFileNames = Directory.GetFiles(@"H:\Videos\Films", "*(????)*", SearchOption.TopDirectoryOnly);
+                int nbDossierActuelle = 0;
+                int nbDossierDeFilm = Directory.GetDirectories(sourceDirectory).Length;
+                foreach (string nom in PathFileNames)
+                {
+                    nbDossierActuelle++;
+                    Util.afficherPourcentage(nbDossierActuelle, nbDossierDeFilm);
+
+                    if (isActive)
+                    {
+                        Directory.CreateDirectory(nom.Split('(')[0]);
+                        string sourceFile = nom;
+                        string destinationFile = nom.Split('(')[0] + nom.Replace(@"H:\Videos\Films", "");
+                        // To move a file or folder to a new location:
+                        if (File.Exists(destinationFile))
+                        {
+                            Console.WriteLine("le dossier " + destinationFile + " existe déjà");
+                        }
+                        else
+                        {
+                            File.Move(sourceFile, destinationFile);
+                        }
+                        Console.WriteLine("OK");
+                    }
+
+                }
+            }
+            catch (UnauthorizedAccessException UAEx)
+            {
+                Console.WriteLine(UAEx.Message);
+            }
+            catch (PathTooLongException PathEx)
+            {
+                Console.WriteLine(PathEx.Message);
+            }
             Console.ReadLine();
             menuAccueil();
         }
