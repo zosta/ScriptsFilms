@@ -16,15 +16,15 @@ namespace ScriptFilms
         {
             for (int i = 0; i <= 100; i++)
             {
-                Console.Write("\r{0}%", i);
+                Console.Write("\r {0}%", i);
                 Thread.Sleep(50);
             }
-            Console.Write("\rOpération terminé avec succès !");
+            Console.Write("\r Opération terminé avec succès !");
         }
 
         internal static void afficherPourcentage(int nbDossierActuelle, int nbDossierDeFilm)
         {
-            Console.Write("\rAvancement{0}%", pourcent(nbDossierActuelle, nbDossierDeFilm));
+            Console.Write("\r Avancement{0}%", pourcent(nbDossierActuelle, nbDossierDeFilm));
             Thread.Sleep(50);
         }
 
@@ -35,7 +35,7 @@ namespace ScriptFilms
 
         internal static void OperationTermine()
         {
-            Console.Write("\rOpération terminé avec succès !");
+            Console.Write("\r Opération terminé avec succès !");
         }
 
         public void renommer(string ancienNom, string nouveauNom)
