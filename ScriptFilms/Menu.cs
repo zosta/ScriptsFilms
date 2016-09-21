@@ -36,8 +36,25 @@ namespace ScriptFilms
             }
             else if (userInput == 2)
             {
-                Dossier doss = new Dossier();
-                doss.chercherDoublonsDansDossier();
+                Console.Clear();
+                int userInputDoublon = 0;
+                userInputDoublon = choixMenuDoublon();
+
+                if (userInputDoublon == 1)
+                {
+                    Dossier doss = new Dossier();
+                    doss.chercherDoublonsDansDossier();
+                }
+                else if(userInputDoublon == 2)
+                 {
+                     Dossier doss = new Dossier();
+                     doss.chercherDoublonsDeDossier();
+                 }
+                else
+                {
+                    afficher();
+                }
+
             }
             else if (userInput == 3)
             {
@@ -65,6 +82,30 @@ namespace ScriptFilms
             Console.WriteLine("2. Chercher les doublons");
             Console.WriteLine("3. Exporter liste de mes films");
             Console.WriteLine("4. Fermer");
+            Console.Write("Choix :");
+            var result = Console.ReadLine();
+            try
+            {
+                choix = Convert.ToInt32(result);
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine("Appuyez sur une touche pour revenir au menu d'accueil");
+                Console.ReadLine();
+                instance.afficher();
+            }
+            return choix;
+        }
+
+        static public int choixMenuDoublon()
+        {
+            int choix = 4;
+            Console.WriteLine("Chercher les doublons");
+            Console.WriteLine();
+            Console.WriteLine("1. Chercher les dossiers contenant plus de un fichier");
+            Console.WriteLine("2. Chercher les dossier qui existe en double dans plusieurs emplacement");
+            Console.WriteLine("3. Fermer");
             Console.Write("Choix :");
             var result = Console.ReadLine();
             try

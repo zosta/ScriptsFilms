@@ -9,6 +9,18 @@ namespace ScriptFilms
     class Config
     {
         // Emplacement de tout les films exemple D:\Films
-        public const string  sourceDirectory = @"D:\test";
+        public const string  sourceDirectory = @"F:\";
+
+
+        public const Boolean multiEmplacement = true;
+
+        public List<string> liEmplacements { get; }
+
+        public Config()
+        {
+            liEmplacements = new List<string>();
+            liEmplacements.Add(@"D:\test2");
+            liEmplacements.Add(@"D:\test");
+        }
     }
 }

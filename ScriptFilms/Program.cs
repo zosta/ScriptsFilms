@@ -11,7 +11,6 @@ namespace ScriptFilms
 {
     class Program
     {
-        private const string sourceDirectory = @"H:\Videos\Films";
         private static Util util;
 
         static void Main(string[] args)

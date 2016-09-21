@@ -19,13 +19,15 @@ namespace ScriptFilms
 
             Boolean isActive = true;
             string[] PathFileNames;
+            // on recupere les fichiers dans le dossier sourcedirectory
             PathFileNames = Directory.GetFiles(Config.sourceDirectory, "*(????)*", SearchOption.TopDirectoryOnly);
+            //on les compte
             int nbDossierDeFilm = PathFileNames.Length;
             try
             {
 
                 int nbDossierActuelle = 0;
-                
+                // on les parcours
                 foreach (string nom in PathFileNames)
                 {
                     nbDossierActuelle++;
@@ -33,9 +35,14 @@ namespace ScriptFilms
 
                     if (isActive)
                     {
+                        //on creer un dossier pour le fichier
                         Directory.CreateDirectory(nom.Split('(')[0]);
+
+                        //emplacement original 
                         string sourceFile = nom;
-                        string destinationFile = nom.Split('(')[0] + nom.Replace(Config.sourceDirectory, "");
+
+                        //emplacement de destination
+                        string destinationFile = nom.Split('(')[0] +@"\"+ nom.Replace(Config.sourceDirectory, "");
                         // To move a file or folder to a new location:
                         string dossierDestination = nom.Split('(')[0] + @"\";
                         int nbFichierDansDossier = Directory.GetFiles(dossierDestination, "*.*", SearchOption.TopDirectoryOnly).Length;
@@ -77,6 +84,33 @@ namespace ScriptFilms
             Menu.Instance.afficher();
         }
 
+        internal void chercherDoublonsDeDossier()
+        {
+            //on recupere une liste des emplacements à scanner
+            Config conf = new Config();
+
+            List<string> liFilms = new List<string>();
+
+            foreach ( string emplacement in conf.liEmplacements)
+            {
+                foreach (string film in Directory.GetDirectories(emplacement))
+                {
+                    string titreFilm = film.Replace(emplacement, "");
+                    // si le film est déjà dans la liste 
+                    if (liFilms.Contains(titreFilm))
+                    {
+                        // on ouvre le repertoire actuellement parcouru
+                        Process.Start(film);
+                    }
+                    else
+                    {
+                        //sinon on ajoute le film à  la liste
+                        liFilms.Add(titreFilm);
+                    }
+                }
+
+            }
+        }
 
         public void chercherDoublonsDansDossier()
         {
