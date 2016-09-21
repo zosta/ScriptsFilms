@@ -20,19 +20,33 @@ namespace ScriptFilms
             Console.WriteLine();
             Console.WriteLine("En cours...");
 
+            Config conf = new Config();
 
-            int nbDossierDeFilm = Directory.GetDirectories(Config.sourceDirectory).Length;
+            int nbDossierDeFilm = 0;
+
+            foreach (string emplacement in conf.liEmplacements)
+            {
+                nbDossierDeFilm = nbDossierDeFilm + Directory.GetDirectories(emplacement).Length;
+            }
+
             int nbDossierActuelle = 0;
             try
             {
-                var repertoires = Directory.EnumerateDirectories(Config.sourceDirectory, "*", SearchOption.TopDirectoryOnly);
+               
 
                 List<string> liFilms = new List<string>();
-                foreach (string repertoire in repertoires)
+
+                
+                foreach (string emplacement in conf.liEmplacements)
                 {
-                    nbDossierActuelle++;
-                    liFilms.Add(repertoire.Replace(Config.sourceDirectory+@"\", ""));
-                    Util.afficherPourcentage(nbDossierActuelle, nbDossierDeFilm);
+                    var repertoires = Directory.EnumerateDirectories(emplacement, "*", SearchOption.TopDirectoryOnly);
+
+                    foreach (string repertoire in repertoires)
+                    {
+                        nbDossierActuelle++;
+                        liFilms.Add(repertoire.Replace(emplacement + @"\", ""));
+                        Util.afficherPourcentage(nbDossierActuelle, nbDossierDeFilm);
+                    }
                 }
 
                 liFilms.Sort();
