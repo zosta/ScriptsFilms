@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WpfScriptFilms.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Disque1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">F:\</Value>
+    </Setting>
+    <Setting Name="Disque2" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Disque3" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Disque4" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Disque5" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="NomFichierExport" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MesFilms</Value>
+    </Setting>
+    <Setting Name="EmplacementFichierExport" Type="System.String" Scope="User">
+      <Value Profile="(Default)">F:\</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
