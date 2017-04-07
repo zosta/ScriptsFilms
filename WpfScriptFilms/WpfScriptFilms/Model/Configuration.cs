@@ -7,12 +7,31 @@ namespace WpfScriptFilms
 {
     class Configuration
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger
+    (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public List<string> disqueChoosen { get; }
-        public string nomFichierExportFilms { get; internal set;}
+        public string nomFichierExportFilms { get; internal set; }
         public string emplacementFichierExport { get; internal set; }
 
-        public Configuration()
+        private static Configuration instance;
+
+        public static Configuration Instance
         {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Configuration();
+                }
+                return instance;
+            }
+        }
+
+        private Configuration()
+        {
+            log.Info("Lancement du singleton Configuration");
+
             disqueChoosen = new List<string>();
             nomFichierExportFilms = "";
             loadConfigDisque();
@@ -45,7 +64,7 @@ namespace WpfScriptFilms
 
         private void addDisque(string pDisque)
         {
-            if(!string.IsNullOrEmpty(pDisque))
+            if (!string.IsNullOrEmpty(pDisque))
                 disqueChoosen.Add(pDisque);
         }
 
@@ -57,11 +76,11 @@ namespace WpfScriptFilms
             Settings.Default.Disque4 = null;
             Settings.Default.Disque5 = null;
             int i = 1;
-            foreach(String disque in disqueChoosen)
+            foreach (String disque in disqueChoosen)
             {
 
-                if(i == 1)
-                { 
+                if (i == 1)
+                {
                     Settings.Default.Disque1 = disque;
                 }
                 else if (i == 2)

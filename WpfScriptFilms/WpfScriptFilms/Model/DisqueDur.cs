@@ -8,11 +8,13 @@ namespace WpfScriptFilms
 {
     class DisqueDur
     {
+    //    private static readonly log4net.ILog log = log4net.LogManager.GetLogger
+    //(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public DisqueDur(string pName)
         {
-            Configuration conf = new Configuration();
+            //log.Info("Lancement de la classe Disque Dur");
             Name = pName;
-            if (conf.disqueChoosen.Contains(pName))
+            if (Configuration.Instance.disqueChoosen.Contains(pName))
             {
                 IsSelected = true;
             }

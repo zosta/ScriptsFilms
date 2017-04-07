@@ -73,6 +73,7 @@
     </Compile>
     <Compile Include="Model\Bibliotheque.cs" />
     <Compile Include="Model\Film.cs" />
+    <Compile Include="Model\ValConst.cs" />
     <Compile Include="Vue\ConfigurationWindow.xaml.cs">
       <DependentUpon>ConfigurationWindow.xaml</DependentUpon>
     </Compile>

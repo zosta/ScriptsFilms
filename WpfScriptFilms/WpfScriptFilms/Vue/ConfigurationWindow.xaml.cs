@@ -21,11 +21,9 @@ namespace WpfScriptFilms
     public partial class ConfigurationWindow : Window
     {
         List<DisqueDur> lstDisque;
-        Configuration conf;
 
         public ConfigurationWindow()
         {
-             conf = new Configuration();
             lstDisque = new List<DisqueDur>();
             InitializeComponent();
             recupAllDisque();
@@ -77,7 +75,7 @@ namespace WpfScriptFilms
             }
             if(doitSauvegarder)
             {
-                conf.saveConf();
+                Configuration.Instance.saveConf();
             }
 
             this.Close();
@@ -86,13 +84,13 @@ namespace WpfScriptFilms
         private void saveDisqueInConf(string name,string pOperation)
         {
             //si il n'y est pas déjà
-            if(pOperation == "add" && !conf.disqueChoosen.Contains(name))
+            if(pOperation == "add" && !Configuration.Instance.disqueChoosen.Contains(name))
             {
-                conf.disqueChoosen.Add(name);
+                Configuration.Instance.disqueChoosen.Add(name);
             }
-            else if (pOperation == "remove" && conf.disqueChoosen.Contains(name))
+            else if (pOperation == "remove" && Configuration.Instance.disqueChoosen.Contains(name))
             {
-                conf.disqueChoosen.Remove(name);
+                Configuration.Instance.disqueChoosen.Remove(name);
             }
         }
 

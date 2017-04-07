@@ -11,12 +11,13 @@ namespace WpfScriptFilms
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger
+        (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         enum OperationConsole { addLine, resetAndAddLine };
-        Configuration conf;
         public MainWindow()
         {
-            conf = new Configuration();
-
             InitializeComponent();
             InitializeListDisqueDur();
             InitializeConsoleText();
@@ -24,7 +25,7 @@ namespace WpfScriptFilms
 
         public void InitializeListDisqueDur()
         {
-            foreach (string disque in conf.disqueChoosen)
+            foreach (string disque in Configuration.Instance.disqueChoosen)
             {
                 lstDisque.Items.Add(disque);
             }
@@ -50,52 +51,18 @@ namespace WpfScriptFilms
 
         private void btn_ExporterListeFilms_Click(object sender, RoutedEventArgs e)
         {
-            ecrireConsole(MsgConst.accueilExportListeFilms, OperationConsole.resetAndAddLine);
-
-            string nomFichier = conf.nomFichierExportFilms + ".txt";
-            List<string> liFilms = new List<string>();
-
-            foreach (string disque in conf.disqueChoosen)
-            {
-                string sourceDirectory = disque;
-                int nbDossierActuelle = 0;
-                //int nbDossierDeFilm = Directory.GetDirectories(sourceDirectory).Length;
-                try
-                {
-                    var repertoires = Directory.EnumerateDirectories(sourceDirectory, "*", SearchOption.TopDirectoryOnly);
-
-                    foreach (string repertoire in repertoires)
-                    {
-                        if (!repertoire.Contains("$RECYCLE"))
-                        {
-                            nbDossierActuelle++;
-                            liFilms.Add(repertoire.Replace(sourceDirectory, ""));
-                        }
-                    }
-
-                }
-                catch (UnauthorizedAccessException UAEx)
-                {
-                    ecrireConsole(UAEx.Message, OperationConsole.resetAndAddLine);
-                }
-                catch (PathTooLongException PathEx)
-                {
-                    ecrireConsole(PathEx.Message, OperationConsole.resetAndAddLine);
-                }
-            }
-            liFilms.Sort();
-
-            liFilms.Add("==========================");
-            liFilms.Add("Nombre total de films : " + liFilms.Count);
-            File.WriteAllLines(conf.emplacementFichierExport + nomFichier, liFilms);
-            //ouvrir fichier
-            Process.Start(conf.emplacementFichierExport + nomFichier);
-            ecrireConsole(MsgConst.exportFilmTermine, OperationConsole.addLine);
+            Bibliotheque.Instance.exporterListeFilms();
+            ecrireConsole(MsgConst.accueilExportListeFilms, OperationConsole.resetAndAddLine);            
         }
 
         private void btn_conf_Click(object sender, RoutedEventArgs e)
         {
             new ConfigurationWindow().ShowDialog();
+        }
+
+        private void btn_CreerDossierFilms_Click(object sender, RoutedEventArgs e)
+        {
+            Bibliotheque.Instance.creerDossierFilmsSeul();
         }
     }
 }
