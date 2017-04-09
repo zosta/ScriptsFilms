@@ -25,7 +25,7 @@ namespace WpfScriptFilms.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("F:\\")]
+        [global::System.Configuration.DefaultSettingValueAttribute("H:\\TestDev")]
         public string Disque1 {
             get {
                 return ((string)(this["Disque1"]));
@@ -97,7 +97,7 @@ namespace WpfScriptFilms.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("F:\\")]
+        [global::System.Configuration.DefaultSettingValueAttribute("H:\\TestDev")]
         public string EmplacementFichierExport {
             get {
                 return ((string)(this["EmplacementFichierExport"]));

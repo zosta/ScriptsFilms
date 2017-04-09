@@ -18,9 +18,12 @@ namespace WpfScriptFilms
         enum OperationConsole { addLine, resetAndAddLine };
         public MainWindow()
         {
+            log.Info("Initialisation de la fenetre principale ");
             InitializeComponent();
             InitializeListDisqueDur();
             InitializeConsoleText();
+            log.Info("Initialisation de la fenetre principale terminé ");
+
         }
 
         public void InitializeListDisqueDur()

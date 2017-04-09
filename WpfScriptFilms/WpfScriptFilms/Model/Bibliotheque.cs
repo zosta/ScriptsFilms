@@ -14,7 +14,7 @@ public class Bibliotheque
     (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
     private static Bibliotheque instance;
-    private List<Film> mesFilms;
+    private List<Film> mesFilms = new List<Film>();
 
     private Bibliotheque()
     {
@@ -49,17 +49,17 @@ public class Bibliotheque
     {
         StringBuilder strBuilder = new StringBuilder();
         strBuilder.AppendLine("Nombre de films : " + mesFilms.Count);
-        strBuilder.AppendLine("Taille total de la mediatheque: " + getTotalSize());
+        //strBuilder.AppendLine("Taille total de la mediatheque: " + getTotalSize());
         strBuilder.AppendLine("Nombre de films HD: " + getNbFilmsHD() + " (" + calculerPourcentage(getNbFilmsHD(), mesFilms.Count) + " %)");
 
         return strBuilder.ToString();
     }
-    private int getTotalSize()
-    {
-        int totalSize =
-       (from Film in mesFilms select Film.taille).Sum();
-        return totalSize;
-    }
+    //private int getTotalSize()
+    //{
+    //    int totalSize =
+    //   (from Film in mesFilms select Film.taille).Sum();
+    //    return totalSize;
+    //}
     private int getNbFilmsHD()
     {
         int nbFilmsHD = 0;
@@ -104,29 +104,38 @@ public class Bibliotheque
                 log.Error("Le repertoire " + disque + " n'a pas été trouvé, veuillez le brancher ou modifier la configuration", DirectoryEx);
             }
         }
-        mesFilms.Sort();
+        if (mesFilms.Count > 0)
+        {
+            log.Info("Trie des films par ordre alphabetique en cours.");
+            mesFilms.Sort();
 
+            try
+            {
+                string[] films = new string[mesFilms.Count];
+                int i = 0;
+                foreach (Film film in mesFilms)
+                {
+                    films[i] = film.ToString();
+
+                }
+                File.WriteAllLines(Configuration.Instance.emplacementFichierExport + nomFichier, films);
+                //ouvrir fichier
+                Process.Start(Configuration.Instance.emplacementFichierExport + nomFichier);
+                //ecrireConsole(MsgConst.exportFilmTermine, OperationConsole.addLine);
+            }
+            catch (DirectoryNotFoundException DirectoryEx)
+            {
+                log.Error("Le chemin " + Configuration.Instance.emplacementFichierExport + " n'a pas été trouvé, veuillez modifier la configuration", DirectoryEx);
+                //ecrireConsole("Le chemin " + Configuration.Instance.emplacementFichierExport + " n'a pas été trouvé, veuillez modifier la configuration", OperationConsole.addLine);
+            }
+        }
+        else
+        {
+            log.Error("Aucun film n'a été trouvé.");
+        }
         //ici methodes pour afficher les informations
 
-        try
-        {
-            string[] films = new string[mesFilms.Count];
-            int i = 0;
-            foreach (Film film in mesFilms)
-            {
-                films[i] = film.ToString();
 
-            }
-            File.WriteAllLines(Configuration.Instance.emplacementFichierExport + nomFichier, films);
-            //ouvrir fichier
-            Process.Start(Configuration.Instance.emplacementFichierExport + nomFichier);
-            //ecrireConsole(MsgConst.exportFilmTermine, OperationConsole.addLine);
-        }
-        catch (DirectoryNotFoundException DirectoryEx)
-        {
-            log.Error("Le chemin " + Configuration.Instance.emplacementFichierExport + " n'a pas été trouvé, veuillez modifier la configuration", DirectoryEx);
-            //ecrireConsole("Le chemin " + Configuration.Instance.emplacementFichierExport + " n'a pas été trouvé, veuillez modifier la configuration", OperationConsole.addLine);
-        }
     }
 
     private int calculerPourcentage(int pNombreACalc, int pNombreTotal)
@@ -164,19 +173,28 @@ public class Bibliotheque
                     if (!repertoire.Contains("$RECYCLE"))
                     {
                         nbDossierActuelle++;
-                        Film film = new Film(repertoire);
-
-                        // on verifie si le dossier n'existe pas deja  
-                        if (Directory.Exists(repertoire))
+                        try
                         {
-                            log.Info("Le dossier "+ repertoire + " exise déjà.");
-                            return;
+                            Film film = new Film(repertoire);
+
+                            // on verifie si le dossier n'existe pas deja  
+                            if (Directory.Exists(repertoire))
+                            {
+                                log.Info("Le dossier " + repertoire + " exise déjà.");
+                                return;
+                            }
+
+                            // Try to create the directory.
+                            DirectoryInfo di = Directory.CreateDirectory(sourceDirectory + "\\" + film.titre);
+
+                            log.Info("Le repertoire " + film.titre + " a été crée avec succès");
+
+                            film.move(di.FullName);
                         }
-
-                        // Try to create the directory.
-                        DirectoryInfo di = Directory.CreateDirectory(repertoire);
-
-                        log.Info("Le repertoire a été crée avec succès");
+                        catch (Exception e)
+                        {
+                            continue;
+                        }
                     }
                 }
 
@@ -208,13 +226,4 @@ public class Bibliotheque
         return nomFilm;
     }
 
-    private Boolean isFilm(string pPath)
-    {
-        Boolean isFilm = false;
-        if (ValConst.extensionsFilms.Contains(pPath))
-        {
-            isFilm = true;
-        }
-        return isFilm;
-    }
 }
