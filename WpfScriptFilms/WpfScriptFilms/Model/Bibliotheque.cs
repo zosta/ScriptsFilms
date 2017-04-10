@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using WpfScriptFilms;
 using WpfScriptFilms.Model;
+using WpfScriptFilms.Vue;
 
 public class Bibliotheque
 {
@@ -50,19 +52,21 @@ public class Bibliotheque
         StringBuilder strBuilder = new StringBuilder();
         strBuilder.AppendLine("Nombre de films : " + mesFilms.Count);
         //strBuilder.AppendLine("Taille total de la mediatheque: " + getTotalSize());
-        strBuilder.AppendLine("Nombre de films HD: " + getNbFilmsHD() + " (" + calculerPourcentage(getNbFilmsHD(), mesFilms.Count) + " %)");
+        int nbFilmHD = getNbFilmsHD(720, 1080);
+        strBuilder.AppendLine("Nombre de films HD: " + nbFilmHD + " (" + calculerPourcentage(nbFilmHD, mesFilms.Count) + " %)");
 
         return strBuilder.ToString();
     }
-    //private int getTotalSize()
-    //{
-    //    int totalSize =
-    //   (from Film in mesFilms select Film.taille).Sum();
-    //    return totalSize;
-    //}
-    private int getNbFilmsHD()
+    private int getTotalSize()
     {
-        int nbFilmsHD = 0;
+        int totalSize =
+       (from Film in mesFilms select Film.taille).Sum();
+        return totalSize;
+    }
+    private int getNbFilmsHD(int pResolutionMin, int pResolutionMax)
+    {
+        int nbFilmsHD = mesFilms.Count(a => a.resolutionX >= pResolutionMin && a.resolutionX <= pResolutionMax);
+
         return nbFilmsHD;
     }
 
@@ -154,8 +158,13 @@ public class Bibliotheque
         return prCent;
     }
 
+
+
     internal void creerDossierFilmsSeul()
     {
+
+        afficherProgressBar();
+
         log.Info("Script de creation des dossiers de films lancé");
         //dans les dossiers configuré, on cherche les films qui ne sont pas dans un dossier 
         foreach (string disque in Configuration.Instance.disqueChoosen)
@@ -190,6 +199,7 @@ public class Bibliotheque
                             log.Info("Le repertoire " + film.titre + " a été crée avec succès");
 
                             film.move(di.FullName);
+                            
                         }
                         catch (Exception e)
                         {
@@ -215,6 +225,14 @@ public class Bibliotheque
 
         }
         log.Info("Script de creation des dossiers de films terminé");
+    }
+
+    private void afficherProgressBar()
+    {
+        ProgressBar progressBar = new ProgressBar();
+
+        progressBar.worker_DoWork(new object(), new DoWorkEventArgs(new object()));
+
     }
 
     private string getNameFromPath(string repertoire)

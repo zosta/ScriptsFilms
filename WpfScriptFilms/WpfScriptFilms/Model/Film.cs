@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MediaInfoLib;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -15,22 +18,26 @@ public class Film
     public int taille { get; }
     private int duree;
     private int annee;
+    public int resolutionX { get; }
 
-    public Film()
-    {
-        log.Info("Lancement de la classe Film");
-    }
 
     public Film(string pChemin)
     {
- 
+        log.Info("Lancement de la classe Film");
+
         this.chemin = pChemin;
         this.titre = getNameFromChemin(pChemin);
         this.extension = getExtensionFromChemin(pChemin);
         this.annee = getYearFromChemin(pChemin);
         this.taille = getTailleFromChemin(pChemin);
+        this.resolutionX = getResolutionX(pChemin);
         log.Info(this.ToString());
 
+    }
+
+    private int getResolutionX(string pChemin)
+    {
+        return 0;
     }
 
     private string getExtensionFromChemin(string pChemin)
@@ -40,9 +47,24 @@ public class Film
 
     private int getTailleFromChemin(string pChemin)
     {
-        return (int)new FileInfo(pChemin).Length/1024/1024;
+        return (int)new FileInfo(pChemin).Length / 1024 / 1024;
     }
+    private void getInfoVideo()
+    {
+        MediaInfo mediaInfo = new MediaInfo();
 
+        // on ouvre le fichier 
+        mediaInfo.Open(chemin);
+
+        mediaInfo.Option("Complete");
+
+        string info = mediaInfo.Inform();
+
+        log.Info(info);
+
+        mediaInfo.Close();
+
+    }
 
     private int getYearFromChemin(string pChemin)
     {
@@ -54,7 +76,7 @@ public class Film
         {
             anneeInt = Int32.Parse(annee);
         }
-        catch(FormatException e)
+        catch (FormatException e)
         {
             log.Error("La chaine entre parenthèse n'a pu etre convertit en année", e);
         }
@@ -80,7 +102,7 @@ public class Film
                 log.Error("Le chemin dont on veut trouver le titre est null", e);
             }
         }
-        if(!isFilm)
+        if (!isFilm)
         {
             log.Info(cheminSansExtensions + " n'a pas le format attendu, le fichier sera ignoré");
             throw new Exception();
@@ -91,10 +113,11 @@ public class Film
     public override string ToString()
     {
         StringBuilder strBuilder = new StringBuilder();
-        strBuilder.AppendLine ("Titre : " + titre);
+        strBuilder.AppendLine("Titre : " + titre);
         strBuilder.AppendLine("Taille : " + taille + " Mo");
         strBuilder.AppendLine("Duree : " + duree);
         strBuilder.AppendLine("Annee : " + annee);
+        strBuilder.AppendLine("Resolution : " + resolutionX);
 
         return strBuilder.ToString();
     }
@@ -115,9 +138,20 @@ public class Film
             if (Directory.Exists(pChemin))
             {
                 log.Info("Le dossier " + pChemin + " existe déjà");
-                if(File.Exists(pChemin))
+                if (File.Exists(pChemin))
                 {
                     log.Info("Le fichier " + nvxCheminFichier + " existe déjà");
+
+                    int fileCount = Directory.GetFiles(pChemin).Length + 1;
+
+                    nvxCheminFichier = pChemin + "\\" + titre + " (" + annee + ")_TMP"+ fileCount + extension;
+
+                    File.Move(chemin, nvxCheminFichier);
+
+                    Process.Start("explorer.exe", nvxCheminFichier);
+
+                    log.Info("Le fichier temporaire" + nvxCheminFichier + " a été creer");
+                    
                 }
                 else
                 {
