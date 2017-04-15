@@ -4,8 +4,10 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Web;
 using WpfScriptFilms;
 using WpfScriptFilms.Model;
 using WpfScriptFilms.Vue;
@@ -185,21 +187,10 @@ public class Bibliotheque
                         try
                         {
                             Film film = new Film(repertoire);
+                            string cheminComplet = sourceDirectory + "\\" + film.titre;
+                            createDirectory(cheminComplet);
+                            film.move(cheminComplet);
 
-                            // on verifie si le dossier n'existe pas deja  
-                            if (Directory.Exists(repertoire))
-                            {
-                                log.Info("Le dossier " + repertoire + " exise déjà.");
-                                return;
-                            }
-
-                            // Try to create the directory.
-                            DirectoryInfo di = Directory.CreateDirectory(sourceDirectory + "\\" + film.titre);
-
-                            log.Info("Le repertoire " + film.titre + " a été crée avec succès");
-
-                            film.move(di.FullName);
-                            
                         }
                         catch (Exception e)
                         {
@@ -244,4 +235,96 @@ public class Bibliotheque
         return nomFilm;
     }
 
+    private void generateHtmlFilms()
+    {
+        StringBuilder sb = new StringBuilder();
+
+
+        foreach (Film film in mesFilms)
+        {
+            //debut de la ligne
+            sb.AppendLine("<tr>");
+
+            //Le titre
+            sb.AppendLine(string.Format("<td><a href=\"{0}\">{1}</a></td>",
+                HttpUtility.HtmlEncode(HttpUtility.UrlEncode(film.titre)),
+                HttpUtility.HtmlEncode(film.titre)));
+
+            //L'année
+            sb.AppendLine(string.Format("<td><a href=\"{0}\">{1}</a></td>",
+                HttpUtility.HtmlEncode(HttpUtility.UrlEncode(film.annee.ToString())),
+                HttpUtility.HtmlEncode(film.titre)));
+
+            //La resolution
+            sb.AppendLine(string.Format("<td><a href=\"{0}\">{1}</a></td>",
+                HttpUtility.HtmlEncode(HttpUtility.UrlEncode(film.resolutionX.ToString())),
+                HttpUtility.HtmlEncode(film.titre)));
+
+            //La durée
+            sb.AppendLine(string.Format("<td><a href=\"{0}\">{1}</a></td>",
+                HttpUtility.HtmlEncode(HttpUtility.UrlEncode(film.duree.ToString())),
+                HttpUtility.HtmlEncode(film.titre)));
+
+            //fin de la ligne
+            sb.AppendLine("</tr>");
+
+        }
+        //var template = File.ReadAllText("tableauFilm.html");
+
+
+        Assembly assembly = Assembly.GetExecutingAssembly();
+        String resourceName = "tableaufilm.html";
+        TextReader inputStream = new StreamReader(assembly.GetManifestResourceStream(resourceName));
+        string template = inputStream.ReadToEnd();
+
+        //on a creer le html 
+        template.Replace("{MES_FILMS}", sb.ToString());
+
+        //on creer le dossier
+        string cheminDossierExport = Configuration.Instance.emplacementFichierExport + "\\Mes Films";
+        createDirectory(cheminDossierExport);
+
+        //on y place le fichier html 
+        string cheminDossierExportIndex = cheminDossierExport + "\\index.html";
+        StreamWriter fichierHtml = File.CreateText(cheminDossierExportIndex);
+        fichierHtml.Write(sb.ToString());
+
+
+        //on creer le dossier styles
+        string cheminDossierExportScripts = cheminDossierExport + "\\Scripts";
+        createDirectory(cheminDossierExportScripts);
+
+        //on y copie jquery et tablesorter
+        WriteResourceToFile(WpfScriptFilms.Properties.Resources.jquery_3_1_1, cheminDossierExportScripts + "\\jquery-3.1.1.js");
+        WriteResourceToFile(WpfScriptFilms.Properties.Resources.jquery_tablesorter_min, cheminDossierExportScripts + "\\jquery_tablesorter_min.js");
+
+
+        string result = sb.ToString();
+    }
+
+    public void WriteResourceToFile(string resourceName, string fileName)
+    {
+        using (var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
+        {
+            using (var file = new FileStream(fileName, FileMode.Create, FileAccess.Write))
+            {
+                resource.CopyTo(file);
+            }
+        }
+    }
+
+    private void createDirectory(string pChemin)
+    {
+        // on verifie si le dossier n'existe pas deja  
+        if (Directory.Exists(pChemin))
+        {
+            log.Info("Le dossier " + pChemin + " exise déjà.");
+            return;
+        }
+
+        // Try to create the directory.
+        DirectoryInfo di = Directory.CreateDirectory(pChemin);
+
+        log.Info("Le repertoire " + pChemin + " a été crée avec succès");
+    }
 }

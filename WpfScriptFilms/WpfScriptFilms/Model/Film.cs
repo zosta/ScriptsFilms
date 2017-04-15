@@ -6,6 +6,7 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using WpfScriptFilms.Model;
+using WpfScriptFilms.Model.Util;
 
 public class Film
 {
@@ -16,8 +17,8 @@ public class Film
     public string chemin { get; }
     public string extension { get; }
     public int taille { get; }
-    private int duree;
-    private int annee;
+    public TimeSpan duree { get; }
+    public int annee { get; }
     public int resolutionX { get; }
 
 
@@ -31,8 +32,16 @@ public class Film
         this.annee = getYearFromChemin(pChemin);
         this.taille = getTailleFromChemin(pChemin);
         this.resolutionX = getResolutionX(pChemin);
+        this.duree = getDureeFromChemin(pChemin);
         log.Info(this.ToString());
 
+    }
+
+    private TimeSpan getDureeFromChemin(string pChemin)
+    {
+        TimeSpan tps = TimeSpan.Zero;
+
+        return tps;
     }
 
     private int getResolutionX(string pChemin)
@@ -49,6 +58,7 @@ public class Film
     {
         return (int)new FileInfo(pChemin).Length / 1024 / 1024;
     }
+
     private void getInfoVideo()
     {
         MediaInfo mediaInfo = new MediaInfo();
@@ -115,10 +125,26 @@ public class Film
         StringBuilder strBuilder = new StringBuilder();
         strBuilder.AppendLine("Titre : " + titre);
         strBuilder.AppendLine("Taille : " + taille + " Mo");
-        strBuilder.AppendLine("Duree : " + duree);
+        strBuilder.AppendLine("Duree : " + TimeUtil.formatTimeSpan(duree));
         strBuilder.AppendLine("Annee : " + annee);
+        strBuilder.AppendLine("Chemin : " + chemin);
         strBuilder.AppendLine("Resolution : " + resolutionX);
+        strBuilder.AppendLine("Extension : " + extension);
 
+        return strBuilder.ToString();
+    }
+
+    public string toStringInLine()
+    {
+        string separateur = " | ";
+        StringBuilder strBuilder = new StringBuilder();
+        strBuilder.Append("Titre : " + titre);
+        strBuilder.Append(separateur);
+        strBuilder.Append("Annee : " + annee);
+        strBuilder.Append(separateur);
+        strBuilder.Append("Duree : " + TimeUtil.formatTimeSpan(duree));
+        strBuilder.Append(separateur);
+        strBuilder.Append("Resolution : " + resolutionX);
         return strBuilder.ToString();
     }
 

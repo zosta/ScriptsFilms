@@ -44,6 +44,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -62,6 +63,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Util\TimeUtil.cs" />
+    <Compile Include="Model\WS\WsFilms.cs" />
     <Compile Include="Vue\ProgressBar.xaml.cs">
       <DependentUpon>ProgressBar.xaml</DependentUpon>
     </Compile>
@@ -118,11 +121,36 @@
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Vue\Html\Scripts\jquery-3.1.1.min.map" />
+    <None Include="Vue\Html\Scripts\jquery-3.1.1.slim.min.map" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <CustomToolNamespace>ConfigurationManager</CustomToolNamespace>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vue\Html\Images\pager\first.png" />
+    <Resource Include="Vue\Html\Images\pager\last.png" />
+    <Resource Include="Vue\Html\Images\pager\next.png" />
+    <Content Include="Vue\Html\Images\pager\pager.css" />
+    <Resource Include="Vue\Html\Images\pager\prev.png" />
+    <Content Include="Vue\Html\Scripts\jquery.tablesorter.min.js" />
+    <Content Include="Vue\Html\Scripts\jquery.tablesorter.pager.js" />
+    <Resource Include="Vue\Html\Images\sorter\asc.gif" />
+    <Resource Include="Vue\Html\Images\sorter\bg.gif" />
+    <Resource Include="Vue\Html\Images\sorter\desc.gif" />
+    <Content Include="Vue\Html\Images\sorter\style.css" />
+    <Resource Include="Vue\Html\tablesorter.txt" />
+    <Content Include="Vue\Html\Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Vue\Html\Scripts\jquery-3.1.1.js" />
+    <Content Include="Vue\Html\Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Vue\Html\Scripts\jquery-3.1.1.slim.js" />
+    <Content Include="Vue\Html\Scripts\jquery-3.1.1.slim.min.js" />
+    <Page Include="Vue\Html\tableaufilm.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

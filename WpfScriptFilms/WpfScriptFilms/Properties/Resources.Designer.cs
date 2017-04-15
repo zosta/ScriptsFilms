@@ -59,5 +59,69 @@ namespace WpfScriptFilms.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à /*!
+        /// * jQuery JavaScript Library v3.1.1
+        /// * https://jquery.com/
+        /// *
+        /// * Includes Sizzle.js
+        /// * https://sizzlejs.com/
+        /// *
+        /// * Copyright jQuery Foundation and other contributors
+        /// * Released under the MIT license
+        /// * https://jquery.org/license
+        /// *
+        /// * Date: 2016-09-22T22:30Z
+        /// */
+        ///( function( global, factory ) {
+        ///
+        ///	&quot;use strict&quot;;
+        ///
+        ///	if ( typeof module === &quot;object&quot; &amp;&amp; typeof module.exports === &quot;object&quot; ) {
+        ///
+        ///		// For CommonJS and CommonJS-like environments where a proper `window`
+        ///		// is present, execute the factory and get j [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        internal static string jquery_3_1_1 {
+            get {
+                return ResourceManager.GetString("jquery_3_1_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à 
+        ///(function($){$.extend({tablesorter:new
+        ///function(){var parsers=[],widgets=[];this.defaults={cssHeader:&quot;header&quot;,cssAsc:&quot;headerSortUp&quot;,cssDesc:&quot;headerSortDown&quot;,cssChildRow:&quot;expand-child&quot;,sortInitialOrder:&quot;asc&quot;,sortMultiSortKey:&quot;shiftKey&quot;,sortForce:null,sortAppend:null,sortLocaleCompare:true,textExtraction:&quot;simple&quot;,parsers:{},widgets:[],widgetZebra:{css:[&quot;even&quot;,&quot;odd&quot;]},headers:{},widthFixed:false,cancelSelection:true,sortList:[],headerList:[],dateFormat:&quot;us&quot;,decimal:&apos;/\.|\,/g&apos;,onRenderHeader:null,selectorHeade [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        internal static string jquery_tablesorter_min {
+            get {
+                return ResourceManager.GetString("jquery_tablesorter_min", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &lt;!DOCTYPE html&gt;
+        ///
+        ///&lt;html lang=&quot;en&quot; xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+        ///&lt;head&gt;
+        ///    &lt;script type=&quot;text/javascript&quot; src=&quot;/Scripts/jquery-3.1.1.js&quot;&gt;&lt;/script&gt;
+        ///    &lt;script type=&quot;text/javascript&quot; src=&quot;/Scripts/jquery.tablesorter.min.js&quot;&gt;&lt;/script&gt; 
+        ///    &lt;meta charset=&quot;utf-8&quot; /&gt;
+        ///    &lt;title&gt;Export HTML de mes films&lt;/title&gt;
+        ///&lt;/head&gt;
+        ///&lt;body&gt;
+        ///    &lt;table id=&quot;tableFilm&quot; class=&quot;tablesorter&quot;&gt;
+        ///        &lt;thead&gt;
+        ///            &lt;tr&gt;
+        ///                &lt;th&gt;Titre du film&lt;/th&gt;
+        ///                &lt;th&gt;Année&lt;/th&gt;
+        ///                &lt;t [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        internal static string tableaufilm {
+            get {
+                return ResourceManager.GetString("tableaufilm", resourceCulture);
+            }
+        }
     }
 }
