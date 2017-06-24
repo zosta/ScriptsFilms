@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{69DFFA55-9245-4935-9811-FAA9CFE33B67}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>FilmApp</RootNamespace>
+    <AssemblyName>FilmApp</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="Vue\App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Model\Acteur.cs" />
+    <Compile Include="Model\Bibliotheque.cs" />
+    <Compile Include="Model\Configuration.cs" />
+    <Compile Include="Model\Dossier.cs" />
+    <Compile Include="Model\Html.cs" />
+    <Compile Include="Model\NFO.cs" />
+    <Compile Include="Model\TextBoxAppender.cs" />
+    <Compile Include="Model\Utilisateur.cs" />
+    <Compile Include="VueModel\Master.cs" />
+    <Compile Include="Vue\ExportWindow.xaml.cs">
+      <DependentUpon>ExportWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Film.cs" />
+    <Compile Include="Vue\ProgressBar.xaml.cs">
+      <DependentUpon>ProgressBar.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Vue\ExportWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vue\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Vue\App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Vue\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Vue\ProgressBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Vue\Html\Scripts\jquery-3.1.1.min.map" />
+    <None Include="Vue\Html\Scripts\jquery-3.1.1.slim.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Vue\Html\Images\pager\first.png" />
+    <Resource Include="Vue\Html\Images\pager\last.png" />
+    <Resource Include="Vue\Html\Images\pager\next.png" />
+    <Content Include="Vue\Html\Images\pager\pager.css" />
+    <Resource Include="Vue\Html\Images\pager\prev.png" />
+    <Resource Include="Vue\Html\Images\sorter\1080P.png" />
+    <Resource Include="Vue\Html\Images\sorter\720P.png" />
+    <Resource Include="Vue\Html\Images\sorter\ajax-loader.gif" />
+    <Resource Include="Vue\Html\Images\sorter\asc.gif" />
+    <Resource Include="Vue\Html\Images\sorter\bg.gif" />
+    <Resource Include="Vue\Html\Images\sorter\desc.gif" />
+    <Resource Include="Vue\Html\Images\sorter\sdtv.gif" />
+    <Content Include="Vue\Html\Images\sorter\style.css" />
+    <Content Include="Vue\Html\Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Vue\Html\Scripts\jquery-3.1.1.js" />
+    <Content Include="Vue\Html\Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Vue\Html\Scripts\jquery-3.1.1.slim.js" />
+    <Content Include="Vue\Html\Scripts\jquery-3.1.1.slim.min.js" />
+    <Content Include="Vue\Html\Scripts\jquery.tablesorter.min.js" />
+    <Content Include="Vue\Html\Scripts\jquery.tablesorter.pager.js" />
+    <Content Include="Vue\Html\tableaufilm.html" />
+    <Resource Include="Vue\Html\tablesorter.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -25,30 +25,6 @@ namespace WpfScriptFilms.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("H:\\TestDev")]
-        public string Disque1 {
-            get {
-                return ((string)(this["Disque1"]));
-            }
-            set {
-                this["Disque1"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Disque2 {
-            get {
-                return ((string)(this["Disque2"]));
-            }
-            set {
-                this["Disque2"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string Disque3 {
             get {
@@ -92,6 +68,30 @@ namespace WpfScriptFilms.Properties {
             }
             set {
                 this["NomFichierExport"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\\\\MATHIEUSERV-PC\\e")]
+        public string Disque1 {
+            get {
+                return ((string)(this["Disque1"]));
+            }
+            set {
+                this["Disque1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\\\\MATHIEUSERV-PC\\f")]
+        public string Disque2 {
+            get {
+                return ((string)(this["Disque2"]));
+            }
+            set {
+                this["Disque2"] = value;
             }
         }
         

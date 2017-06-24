@@ -22,7 +22,7 @@ namespace WpfScriptFilms.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace WpfScriptFilms.Properties {
         ///   Retourne l'instance ResourceManager mise en cache utilisée par cette classe.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WpfScriptFilms.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace WpfScriptFilms.Properties {
         ///   les recherches de ressources à l'aide de cette classe de ressource fortement typée.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,42 +61,124 @@ namespace WpfScriptFilms.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à /*!
-        /// * jQuery JavaScript Library v3.1.1
-        /// * https://jquery.com/
-        /// *
-        /// * Includes Sizzle.js
-        /// * https://sizzlejs.com/
-        /// *
-        /// * Copyright jQuery Foundation and other contributors
-        /// * Released under the MIT license
-        /// * https://jquery.org/license
-        /// *
-        /// * Date: 2016-09-22T22:30Z
-        /// */
-        ///( function( global, factory ) {
-        ///
-        ///	&quot;use strict&quot;;
-        ///
-        ///	if ( typeof module === &quot;object&quot; &amp;&amp; typeof module.exports === &quot;object&quot; ) {
-        ///
-        ///		// For CommonJS and CommonJS-like environments where a proper `window`
-        ///		// is present, execute the factory and get j [le reste de la chaîne a été tronqué]&quot;;.
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static string jquery_3_1_1 {
+        public static System.Drawing.Bitmap _1080P {
             get {
-                return ResourceManager.GetString("jquery_3_1_1", resourceCulture);
+                object obj = ResourceManager.GetObject("_1080P", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap _720P {
+            get {
+                object obj = ResourceManager.GetObject("_720P", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap ajax_loader {
+            get {
+                object obj = ResourceManager.GetObject("ajax_loader", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap asc {
+            get {
+                object obj = ResourceManager.GetObject("asc", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap bg {
+            get {
+                object obj = ResourceManager.GetObject("bg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap desc {
+            get {
+                object obj = ResourceManager.GetObject("desc", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à /*! jQuery v3.1.1 | (c) jQuery Foundation | jquery.org/license */
+        ///!function(a,b){&quot;use strict&quot;;&quot;object&quot;==typeof module&amp;&amp;&quot;object&quot;==typeof module.exports?module.exports=a.document?b(a,!0):function(a){if(!a.document)throw new Error(&quot;jQuery requires a window with a document&quot;);return b(a)}:b(a)}(&quot;undefined&quot;!=typeof window?window:this,function(a,b){&quot;use strict&quot;;var c=[],d=a.document,e=Object.getPrototypeOf,f=c.slice,g=c.concat,h=c.push,i=c.indexOf,j={},k=j.toString,l=j.hasOwnProperty,m=l.toString,n=m.call(Object) [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        public static string jquery_3_1_1_min {
+            get {
+                return ResourceManager.GetString("jquery_3_1_1_min", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Recherche une chaîne localisée semblable à 
         ///(function($){$.extend({tablesorter:new
-        ///function(){var parsers=[],widgets=[];this.defaults={cssHeader:&quot;header&quot;,cssAsc:&quot;headerSortUp&quot;,cssDesc:&quot;headerSortDown&quot;,cssChildRow:&quot;expand-child&quot;,sortInitialOrder:&quot;asc&quot;,sortMultiSortKey:&quot;shiftKey&quot;,sortForce:null,sortAppend:null,sortLocaleCompare:true,textExtraction:&quot;simple&quot;,parsers:{},widgets:[],widgetZebra:{css:[&quot;even&quot;,&quot;odd&quot;]},headers:{},widthFixed:false,cancelSelection:true,sortList:[],headerList:[],dateFormat:&quot;us&quot;,decimal:&apos;/\.|\,/g&apos;,onRenderHeader:null,selectorHeade [le reste de la chaîne a été tronqué]&quot;;.
+        ///function(){var parsers=[],widgets=[];this.defaults={cssHeader:&quot;header&quot;,cssAsc:&quot;headerSortUp&quot;,cssDesc:&quot;headerSortDown&quot;,cssChildRow:&quot;expand-child&quot;,sortInitialOrder:&quot;asc&quot;,sortMultiSortKey:&quot;shiftKey&quot;,sortForce:null,sortAppend:null,sortLocaleCompare:true,textExtraction:&quot;simple&quot;,parsers:{},widgets:[],widgetZebra:{css:[&quot;even&quot;,&quot;odd&quot;]},headers:{},widthFixed:false,cancelSelection:true,sortList:[],headerList:[],dateFormat:&quot;us&quot;,decimal:&apos;/\.|\,/g&apos;,onRenderHeader:null,selectorHea [le reste de la chaîne a été tronqué]&quot;;.
         /// </summary>
-        internal static string jquery_tablesorter_min {
+        public static string jquery_tablesorter_min {
             get {
                 return ResourceManager.GetString("jquery_tablesorter_min", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap sdtv {
+            get {
+                object obj = ResourceManager.GetObject("sdtv", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à /* tables */
+        ///table.tablesorter {
+        ///	font-family:arial;
+        ///	background-color: #CDCDCD;
+        ///	margin:10px 0pt 15px;
+        ///	font-size: 8pt;
+        ///	width: 100%;
+        ///	text-align: left;
+        ///}
+        ///table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+        ///	background-color: #e6EEEE;
+        ///	border: 1px solid #FFF;
+        ///	font-size: 8pt;
+        ///	padding: 4px;
+        ///	text-align:left;
+        ///}
+        ///table.tablesorter thead tr .header {
+        ///	background-image: url(bg.gif);
+        ///	background-repeat: no-repeat;
+        ///	background-position: center right;
+        ///	cursor: pointer;
+        ///}
+        ///table.tabl [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        public static string style {
+            get {
+                return ResourceManager.GetString("style", resourceCulture);
             }
         }
         
@@ -105,20 +187,24 @@ namespace WpfScriptFilms.Properties {
         ///
         ///&lt;html lang=&quot;en&quot; xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
         ///&lt;head&gt;
-        ///    &lt;script type=&quot;text/javascript&quot; src=&quot;/Scripts/jquery-3.1.1.js&quot;&gt;&lt;/script&gt;
-        ///    &lt;script type=&quot;text/javascript&quot; src=&quot;/Scripts/jquery.tablesorter.min.js&quot;&gt;&lt;/script&gt; 
-        ///    &lt;meta charset=&quot;utf-8&quot; /&gt;
-        ///    &lt;title&gt;Export HTML de mes films&lt;/title&gt;
-        ///&lt;/head&gt;
-        ///&lt;body&gt;
-        ///    &lt;table id=&quot;tableFilm&quot; class=&quot;tablesorter&quot;&gt;
-        ///        &lt;thead&gt;
-        ///            &lt;tr&gt;
-        ///                &lt;th&gt;Titre du film&lt;/th&gt;
-        ///                &lt;th&gt;Année&lt;/th&gt;
-        ///                &lt;t [le reste de la chaîne a été tronqué]&quot;;.
+        ///    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;Style/style.css&quot;&gt;
+        ///    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/dot-luv/jquery-ui.min.css&quot;&gt;
+        ///    &lt;style&gt;
+        ///        .attribut {
+        ///            display: block;
+        ///        }
+        ///
+        ///        #details-film {
+        ///            display: inline-block;
+        ///        }
+        ///
+        ///        .colonne-attribut {
+        ///            display: inline-block;
+        ///        }
+        ///
+        ///        #det [le reste de la chaîne a été tronqué]&quot;;.
         /// </summary>
-        internal static string tableaufilm {
+        public static string tableaufilm {
             get {
                 return ResourceManager.GetString("tableaufilm", resourceCulture);
             }

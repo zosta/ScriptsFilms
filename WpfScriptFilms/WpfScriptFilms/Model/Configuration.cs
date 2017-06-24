@@ -46,6 +46,7 @@ namespace WpfScriptFilms
 
         private void loadConfigDisque()
         {
+            Settings.Default.Reset();
             string disque1 = Settings.Default.Disque1;
             string disque2 = Settings.Default.Disque2;
             string disque3 = Settings.Default.Disque3;

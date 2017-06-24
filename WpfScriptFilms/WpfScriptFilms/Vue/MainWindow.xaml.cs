@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
+using WpfScriptFilms.Vue;
 
 namespace WpfScriptFilms
 {
@@ -19,20 +20,20 @@ namespace WpfScriptFilms
         public MainWindow()
         {
             log.Info("Initialisation de la fenetre principale ");
-            InitializeComponent();
-            InitializeListDisqueDur();
+            //InitializeComponent();
+            //InitializeListDisqueDur();
             InitializeConsoleText();
             log.Info("Initialisation de la fenetre principale terminé ");
 
         }
 
-        public void InitializeListDisqueDur()
-        {
-            foreach (string disque in Configuration.Instance.disqueChoosen)
-            {
-                lstDisque.Items.Add(disque);
-            }
-        }
+        //public void InitializeListDisqueDur()
+        //{
+        //    foreach (string disque in Configuration.Instance.disqueChoosen)
+        //    {
+        //        lstDisque.Items.Add(disque);
+        //    }
+        //}
 
         private void InitializeConsoleText()
         {
@@ -43,29 +44,31 @@ namespace WpfScriptFilms
         {
             if (pOperation.Equals(OperationConsole.resetAndAddLine))
             {
-                txtBoxConsole.Text = "";
+                //txtBoxConsole.Text = "";
                 ecrireConsole(pMessage, OperationConsole.addLine);
             }
             else if (pOperation.Equals(OperationConsole.addLine))
             {
-                txtBoxConsole.Text += pMessage + Environment.NewLine;
+                //txtBoxConsole.Text += pMessage + Environment.NewLine;
             }
         }
 
         private void btn_ExporterListeFilms_Click(object sender, RoutedEventArgs e)
         {
-            Bibliotheque.Instance.exporterListeFilms();
-            ecrireConsole(MsgConst.accueilExportListeFilms, OperationConsole.resetAndAddLine);            
+            new ExportWindow().ShowDialog();
+            //Bibliotheque.Instance.exporterListeFilms();
+            //ecrireConsole(MsgConst.accueilExportListeFilms, OperationConsole.resetAndAddLine);            
         }
 
-        private void btn_conf_Click(object sender, RoutedEventArgs e)
-        {
-            new ConfigurationWindow().ShowDialog();
-        }
 
         private void btn_CreerDossierFilms_Click(object sender, RoutedEventArgs e)
         {
             Bibliotheque.Instance.creerDossierFilmsSeul();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Bibliotheque.Instance.listerFilmsADL();
         }
     }
 }

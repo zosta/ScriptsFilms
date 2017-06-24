@@ -2,12 +2,6 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WpfScriptFilms.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="Disque1" Type="System.String" Scope="User">
-      <Value Profile="(Default)">H:\TestDev</Value>
-    </Setting>
-    <Setting Name="Disque2" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
     <Setting Name="Disque3" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
@@ -19,6 +13,12 @@
     </Setting>
     <Setting Name="NomFichierExport" Type="System.String" Scope="User">
       <Value Profile="(Default)">MesFilms</Value>
+    </Setting>
+    <Setting Name="Disque1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\\MATHIEUSERV-PC\e</Value>
+    </Setting>
+    <Setting Name="Disque2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\\MATHIEUSERV-PC\f</Value>
     </Setting>
     <Setting Name="EmplacementFichierExport" Type="System.String" Scope="User">
       <Value Profile="(Default)">H:\TestDev</Value>
