@@ -51,9 +51,9 @@ namespace FilmApp.Model
 
             string nomFichier = Configuration.Instance.nomFichierExportFilms + ".txt";
 
-            foreach (string disque in Configuration.Instance.disqueChoosen)
+            foreach (DisqueDur dd in Configuration.Instance.disqueChoosen)
             {
-                string sourceDirectory = disque;
+                string sourceDirectory = dd.Name;
                 try
                 {
                     var repertoires = Directory.EnumerateDirectories(sourceDirectory, "*", SearchOption.TopDirectoryOnly);
@@ -92,15 +92,15 @@ namespace FilmApp.Model
                 }
                 catch (UnauthorizedAccessException UAEx)
                 {
-                    log.Error("Le repertoire " + disque + " n'a pas les droits pour acceder à ce repertoire.", UAEx);
+                    log.Error("Le repertoire " + sourceDirectory + " n'a pas les droits pour acceder à ce repertoire.", UAEx);
                 }
                 catch (PathTooLongException PathEx)
                 {
-                    log.Error("Le repertoire " + disque + " a un chemin trop long, operation impossible.", PathEx);
+                    log.Error("Le repertoire " + sourceDirectory + " a un chemin trop long, operation impossible.", PathEx);
                 }
                 catch (DirectoryNotFoundException DirectoryEx)
                 {
-                    log.Error("Le repertoire " + disque + " n'a pas été trouvé, veuillez le brancher ou modifier la configuration.", DirectoryEx);
+                    log.Error("Le repertoire " + sourceDirectory + " n'a pas été trouvé, veuillez le brancher ou modifier la configuration.", DirectoryEx);
                 }
             }
             if (mesFilms.Count > 0)
@@ -109,7 +109,7 @@ namespace FilmApp.Model
             }
             else
             {
-                string listeDisques = string.Join(",", Configuration.Instance.disqueChoosen.ToArray());
+                string listeDisques = string.Join(",", Configuration.Instance.disqueChoosen);
                 log.Error("Aucun film n'a été trouvé dans les repertoires : " + listeDisques);
             }
             TimeSpan dureeExecution = DateTime.Now - startTime;

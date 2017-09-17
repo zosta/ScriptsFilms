@@ -5,21 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfScriptFilms"
         mc:Ignorable="d"
-        Title="Films" Height="600" Width="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="249*"/>
-            <ColumnDefinition Width="47*"/>
-        </Grid.ColumnDefinitions>
-        <Viewbox x:Name="viewBoxConsole" HorizontalAlignment="Left" Height="391" Margin="0,168,0,0" VerticalAlignment="Top" Width="782" Grid.ColumnSpan="2">
-            <TextBox x:Name="txtBoxConsole" Height="83" TextWrapping="Wrap" Width="166" VerticalAlignment="Bottom" VerticalContentAlignment="Stretch" FontSize="6" HorizontalContentAlignment="Stretch" IsReadOnly="True" Text="{Binding TextBoxAppender.msg}">
+        Title="Mes Films" Height="600" Width="800">
+    <Border Padding="10">
+        <StackPanel>
+            <!--Partie haute-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
                 
-            </TextBox>
-        </Viewbox>
-        <Label x:Name="lblConsole" Content="Console :" HorizontalAlignment="Left" Margin="10,137,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btn_ExporterListeFilms" Content="Exporter liste des films" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Width="93" Click="btn_ExporterListeFilms_Click"/>
-        <Button x:Name="btn_CreerDossierFilms" Content="Ranger les films" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Width="93" Click="btn_CreerDossierFilms_Click"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="10,95,0,0" VerticalAlignment="Top" Width="117" Height="37" Click="Button_Click"/>
+                <!--Boutons-->
+                <Button Grid.Column="0" x:Name="btn_ExporterListeFilms" Content="Exporter liste des films"      Click="btn_ExporterListeFilms_Click"    Margin="0 0 10 0"/>
+                <Button Grid.Column="1" x:Name="btn_CreerDossierFilms"  Content="Ranger les films"              Click="btn_CreerDossierFilms_Click"     Margin="0 0 10 0"/>
+                <Button Grid.Column="2" x:Name="btn_3"                  Content="Button"                        Click="Button_Click"                    Margin="0 0 10 0"/>
+                
+                <StackPanel  Grid.Column="3">
+                    <TextBlock Text="Paramètres" FontWeight="Bold"></TextBlock>
+                    <TextBlock Text="Disques Dur"></TextBlock>
+                    <ListBox ItemsSource="{Binding ListDisqueDur}" SelectionChanged="ListBox_SelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding IsSelected}" Content="{Binding Libelle}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Button x:Name="btn_SaveParams"         Content="Sauvegarder" Click="btn_SaveParams_Click"    />
 
-    </Grid>
+                </StackPanel>
+            </Grid>
+            <!--Partie basse-->
+            <!--Console-->
+            <StackPanel >
+                <TextBlock Text="Console"></TextBlock>
+                <Viewbox x:Name="viewBoxConsole">
+                    <TextBox x:Name="txtBoxConsole" FontSize="6" IsReadOnly="True" Text="{Binding TextBoxAppender.msg}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Height="4"/>
+                </Viewbox>
+            </StackPanel>
+        </StackPanel>
+    </Border>
 </Window>

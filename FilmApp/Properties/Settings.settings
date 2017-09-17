@@ -5,23 +5,11 @@
     <Setting Name="NomFichierExportFilms" Type="System.String" Scope="User">
       <Value Profile="(Default)">mesFilms</Value>
     </Setting>
-    <Setting Name="Disque1" Type="System.String" Scope="User">
-      <Value Profile="(Default)">F:\</Value>
-    </Setting>
-    <Setting Name="Disque2" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="Disque3" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="Disque4" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="Disque5" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
     <Setting Name="CheminFichierExportFilms" Type="System.String" Scope="User">
-      <Value Profile="(Default)">F:\</Value>
+      <Value Profile="(Default)">H:\TestDev\</Value>
+    </Setting>
+    <Setting Name="DisqueSelected" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

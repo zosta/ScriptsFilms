@@ -62,12 +62,13 @@
     <Compile Include="Model\Acteur.cs" />
     <Compile Include="Model\Bibliotheque.cs" />
     <Compile Include="Model\Configuration.cs" />
+    <Compile Include="Model\DisqueDur.cs" />
     <Compile Include="Model\Dossier.cs" />
     <Compile Include="Model\Html.cs" />
     <Compile Include="Model\NFO.cs" />
     <Compile Include="Model\TextBoxAppender.cs" />
     <Compile Include="Model\Utilisateur.cs" />
-    <Compile Include="VueModel\Master.cs" />
+    <Compile Include="Vue.cs" />
     <Compile Include="Vue\ExportWindow.xaml.cs">
       <DependentUpon>ExportWindow.xaml</DependentUpon>
     </Compile>
@@ -125,7 +126,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="VueModel\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Vue\Html\Images\pager\first.png" />
     <Resource Include="Vue\Html\Images\pager\last.png" />

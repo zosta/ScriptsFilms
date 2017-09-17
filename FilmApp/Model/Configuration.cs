@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace FilmApp.Model
 {
@@ -9,8 +11,9 @@ namespace FilmApp.Model
     {
         private static Configuration instance;
         internal readonly string nomFichierExportFilms;
-        internal readonly List<string> disqueChoosen;
+        internal readonly List<DisqueDur> disqueChoosen;
         internal readonly string emplacementFichierExportFilms;
+        internal List<DisqueDur> disqueDispo;
 
         /// <summary>
         /// L'instance du singleton Configuration
@@ -34,27 +37,31 @@ namespace FilmApp.Model
         {
             nomFichierExportFilms = Properties.Settings.Default.NomFichierExportFilms;
             emplacementFichierExportFilms = Properties.Settings.Default.NomFichierExportFilms;
-            disqueChoosen = new List<string>();
-            if (!string.IsNullOrEmpty(Properties.Settings.Default.Disque1))
+            disqueChoosen = new List<DisqueDur>();
+
+            disqueDispo = new List<DisqueDur>();
+            DriveInfo[] allDrives = DriveInfo.GetDrives();
+
+            foreach (DriveInfo d in allDrives)
             {
-                disqueChoosen.Add(Properties.Settings.Default.Disque1);
+                if (d.IsReady == true)
+                {
+                    disqueDispo.Add(new DisqueDur(false, d.Name, d.VolumeLabel));                   
+                }
             }
-            if (!string.IsNullOrEmpty(Properties.Settings.Default.Disque2))
+        }
+
+
+        internal void saveConfig()
+        {
+            Properties.Settings.Default.DisqueSelected = string.Empty;
+            foreach ( DisqueDur dd in disqueChoosen )
             {
-                disqueChoosen.Add(Properties.Settings.Default.Disque2);
+                Properties.Settings.Default.DisqueSelected += dd.VolumeLabel+ " ; ";
+
             }
-            if (!string.IsNullOrEmpty(Properties.Settings.Default.Disque3))
-            {
-                disqueChoosen.Add(Properties.Settings.Default.Disque3);
-            }
-            if (!string.IsNullOrEmpty(Properties.Settings.Default.Disque4))
-            {
-                disqueChoosen.Add(Properties.Settings.Default.Disque4);
-            }
-            if (!string.IsNullOrEmpty(Properties.Settings.Default.Disque5))
-            {
-                disqueChoosen.Add(Properties.Settings.Default.Disque5);
-            }
+            Properties.Settings.Default.Save();
+
         }
     }
 }

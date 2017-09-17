@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
+﻿using FilmApp.Model;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using WpfScriptFilms.Vue;
 
 namespace WpfScriptFilms
@@ -16,15 +16,34 @@ namespace WpfScriptFilms
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger
         (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        public ObservableCollection<DisqueDur> ListDisqueDur { get; set; }
+
         enum OperationConsole { addLine, resetAndAddLine };
         public MainWindow()
         {
             log.Info("Initialisation de la fenetre principale ");
             //InitializeComponent();
             //InitializeListDisqueDur();
+            InitializeListDisqueDur();
             InitializeConsoleText();
             log.Info("Initialisation de la fenetre principale terminé ");
 
+        }
+
+        private void InitializeListDisqueDur()
+        {
+            ListDisqueDur = new ObservableCollection<DisqueDur>();
+            foreach (DisqueDur dd in Configuration.Instance.disqueDispo)
+            {
+                bool isInConf = false;
+                if(FilmApp.Properties.Settings.Default.DisqueSelected.Contains(dd.Name))
+                {
+                    isInConf = true;
+                }
+                ListDisqueDur.Add(new DisqueDur(isInConf, dd.VolumeLabel, dd.Name));
+            }
+
+            this.DataContext = this;
         }
 
         //public void InitializeListDisqueDur()
@@ -71,6 +90,25 @@ namespace WpfScriptFilms
             //Bibliotheque.Instance.listerFilmsADL();
         }
 
-        
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            log.Info("ListBox Selection changé");
+
+        }
+
+        private void btn_SaveParams_Click(object sender, RoutedEventArgs e)
+        {
+            log.Info("Click bouton sauvegarder Disque Dur actif.");
+
+            Configuration.Instance.disqueChoosen.Clear();
+            foreach (DisqueDur dd in ListDisqueDur)
+            {
+                if (dd.IsSelected)
+                {
+                    Configuration.Instance.disqueChoosen.Add(dd);
+                }
+            }
+            Configuration.Instance.saveConfig();
+        }
     }
 }
