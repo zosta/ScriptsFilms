@@ -79,10 +79,14 @@ namespace WpfScriptFilms
             //ecrireConsole(MsgConst.accueilExportListeFilms, OperationConsole.resetAndAddLine);            
         }
 
-
+        /// <summary>
+        /// Permet de lancer la creationd e dossier
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_CreerDossierFilms_Click(object sender, RoutedEventArgs e)
         {
-            //Bibliotheque.Instance.creerDossierFilmsSeul();
+            Bibliotheque.Instance.creerDossierFilm();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

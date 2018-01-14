@@ -19,7 +19,7 @@ namespace FilmApp.Model
         public string urlPoster { get; }
         public string urlFanart { get; }
         public string urlDossierActeurs { get; }
-        private string urlFilm { get; }
+        public string urlFilm { get; }
         public string noteMoy { get; internal set; }
         public string noteNb { get; internal set; }
         public string codec { get; set; }

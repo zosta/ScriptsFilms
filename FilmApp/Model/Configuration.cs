@@ -12,6 +12,9 @@ namespace FilmApp.Model
         private static Configuration instance;
         internal readonly string nomFichierExportFilms;
         internal readonly List<DisqueDur> disqueChoosen;
+        /// <summary>
+        /// L'emplacement destination de l'export des films
+        /// </summary>
         internal readonly string emplacementFichierExportFilms;
         internal List<DisqueDur> disqueDispo;
 
